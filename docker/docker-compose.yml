@@ -1,0 +1,38 @@
+version: '3'
+services:
+  es1:
+    container_name: es1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    environment:
+      - node.name=es1
+      - cluster.name=nori-cluster
+      - cluster.initial_master_nodes=es1,es2
+      - discovery.seed_hosts=es2
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS= -Xms1g -Xmx1g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9201:9200
+  es2:
+    container_name: es2
+    depends_on:
+      - es1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    environment:
+      - node.name=es2
+      - cluster.name=nori-cluster
+      - cluster.initial_master_nodes=es1,es2
+      - discovery.seed_hosts=es2
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS= -Xms1g -Xmx1g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9202:9200
+
+#todo volume, network, kibana
