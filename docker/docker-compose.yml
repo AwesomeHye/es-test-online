@@ -11,9 +11,7 @@ services:
       - bootstrap.memory_lock=true
       - ES_JAVA_OPTS= -Xms1g -Xmx1g
     volumes:
-      esvol1: /usr/share/elasticsearch/data
-    networks:
-      - esnet
+      - esvol1:/usr/share/elasticsearch/data
     ulimits:
       memlock:
         soft: -1
@@ -33,9 +31,7 @@ services:
       - bootstrap.memory_lock=true
       - ES_JAVA_OPTS= -Xms1g -Xmx1g
     volumes:
-      esvol2: /usr/share/elasticsearch/data
-    networks:
-      - esnet
+      - esvol2:/usr/share/elasticsearch/data
     ulimits:
       memlock:
         soft: -1
@@ -48,15 +44,13 @@ services:
       - es1
       - es2
     image: docker.elastic.co/kibana/kibana:7.17.6
-    networks:
-      - esnet
     ports:
     - 5601:5601
 volumes:
   esvol1:
   esvol2:
-networks:
-  esnet:
-    driver: host
+#networks:
+#  default:
+#    driver: host
 
 #todo volume v, network v, kibana v
