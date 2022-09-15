@@ -90,5 +90,9 @@
 
 `GET` 요청을 사용하여 형태소 분석 결과를 반환한다.
 
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
 
-operation::analyze-nori[snippets='http-request,http-response']
+include::{snippets}/analyze-nori/http-request.adoc[]
+include::{snippets}/analyze-nori/http-response.adoc[]
