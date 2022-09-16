@@ -44,9 +44,15 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-build {
-    dependsOn copyDocument
+asciidoctor {
+    dependsOn test
+    inputs.dir snippetsDir
 }
+
+asciidoctor.doFirst {
+    delete file('src/main/resources/static/docs')
+}
+
 
 task copyDocument(type: Copy) {
     dependsOn asciidoctor
@@ -54,13 +60,8 @@ task copyDocument(type: Copy) {
     into(file("src/main/resources/static/docs"))
 }
 
-asciidoctor.doFirst {
-    delete file('src/main/resources/static/docs')
-}
-
-asciidoctor {
-    dependsOn test
-    inputs.dir snippetsDir
+build {
+    dependsOn copyDocument
 }
 
 bootJar {
@@ -71,6 +72,8 @@ bootJar {
         into 'build/resources/main/static/docs'
     }
 }
+
+
 
 
 
