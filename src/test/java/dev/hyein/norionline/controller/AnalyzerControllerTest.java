@@ -41,7 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @Import(RestDocsConfiguration.class) // @Configuration 적용
 class AnalyzerControllerTest {
 
-    @Autowired
+    @Autowired(required = false)
     MockMvc mockMvc;
 
     @Autowired
@@ -50,6 +50,7 @@ class AnalyzerControllerTest {
     @Test
     public void analyzer() throws Exception {
         NoriAnalyzerRequestVo noriAnalyzerRequestVo = createVo();
+
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/analyze/nori")
                         .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
@@ -57,22 +58,23 @@ class AnalyzerControllerTest {
                         .param("userDictionaryRules", "가곡역 가곡 역")
                         .param("discardPunctuation", "true")
                         .param("noriPartOfSpeech", "NN")
+                        .param("inputText", "아버지가 가방에 들어가고 싶다.")
         )
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("decompoundMode").value("compound"))
+                .andExpect(MockMvcResultMatchers.jsonPath("analyzedText").exists())
 
                 .andDo(document("analyze-nori", // 문서명
                         requestHeaders(
                                 headerWithName(HttpHeaders.ACCEPT).description("accept header")
                         ),
 
-
                         requestParameters(
                                 parameterWithName("decompoundMode").description("분석 모드"),
                                 parameterWithName("userDictionaryRules").description("유저 사전"),
                                 parameterWithName("discardPunctuation").description("기호 제거 여부"),
-                                parameterWithName("noriPartOfSpeech").description("스탑태그")
+                                parameterWithName("noriPartOfSpeech").description("스탑태그"),
+                                parameterWithName("inputText").description("입력 텍스트")
                         )
                 ))
         ;

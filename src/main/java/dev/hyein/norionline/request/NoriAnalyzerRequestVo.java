@@ -8,9 +8,9 @@ import lombok.Setter;
 import java.util.List;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-public class NoriAnalyzerRequestVo {
-    String decompoundMode;
-    List<String> userDictionaryRules;
-    Boolean discardPunctuation;
-    List<String> noriPartOfSpeech;
+public class NoriAnalyzerRequestVo extends AnalyzerRequestVo {
+    private String decompoundMode;
+    private List<String> userDictionaryRules;
+    private Boolean discardPunctuation;
+    private List<String> noriPartOfSpeech;
 }
