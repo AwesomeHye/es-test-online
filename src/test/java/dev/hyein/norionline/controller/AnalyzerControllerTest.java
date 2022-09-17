@@ -29,16 +29,16 @@ import static org.springframework.restdocs.headers.HeaderDocumentation.headerWit
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
+import static org.springframework.restdocs.snippet.Attributes.key;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
-@Import(RestDocsConfiguration.class) // @Configuration 적용
+@Import(RestDocsConfiguration.class) // @TestConfiguration 적용
 class AnalyzerControllerTest {
 
     @Autowired(required = false)
@@ -62,7 +62,9 @@ class AnalyzerControllerTest {
         )
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("analyzedText").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("analyzedTextInfoList[0].analyzedText").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("analyzedTextInfoList[0].startOffset").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("analyzedTextInfoList[0].endOffset").exists())
 
                 .andDo(document("analyze-nori", // 문서명
                         requestHeaders(
@@ -70,12 +72,25 @@ class AnalyzerControllerTest {
                         ),
 
                         requestParameters(
-                                parameterWithName("decompoundMode").description("분석 모드"),
-                                parameterWithName("userDictionaryRules").description("유저 사전"),
+                                parameterWithName("decompoundMode").description("복합 명사 옵션").attributes(
+                                        key("available").value("none,discard,mixed")
+                                ),
+                                parameterWithName("userDictionaryRules").description("유저 사전").optional(),
                                 parameterWithName("discardPunctuation").description("기호 제거 여부"),
-                                parameterWithName("noriPartOfSpeech").description("스탑태그"),
-                                parameterWithName("inputText").description("입력 텍스트")
+                                parameterWithName("noriPartOfSpeech").description("stop tags").attributes(
+                                        key("available").value("E,IC,J,MAG,MM,NA,NR,SC,SE,SF,SH,SL,SN,SP,SSC,SSO,SY,UNA,UNKNOWN,VA,VCN,VCP,VSV,VV,VX,XPN,XR,XSA,XSN,XSV")
+                                ),
+                                parameterWithName("inputText").description("입력 텍스트").optional()
+                        ),
+
+                        responseFields(
+                                fieldWithPath("analyzedTextInfoList[0].analyzedText").description("분석 완료된 텍스트"),
+                                subsectionWithPath("analyzedTextInfoList[0].startOffset").description("텀 시작 위치"),
+                                subsectionWithPath("analyzedTextInfoList[0].endOffset").description("텀 끝 위치")
                         )
+
+
+
                 ))
         ;
     }
