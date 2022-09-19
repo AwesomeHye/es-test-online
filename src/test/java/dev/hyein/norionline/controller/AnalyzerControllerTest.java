@@ -85,8 +85,8 @@ class AnalyzerControllerTest {
 
                         responseFields(
                                 fieldWithPath("analyzedTextInfoList[0].analyzedText").description("분석 완료된 텍스트"),
-                                subsectionWithPath("analyzedTextInfoList[0].startOffset").description("텀 시작 위치"),
-                                subsectionWithPath("analyzedTextInfoList[0].endOffset").description("텀 끝 위치")
+                                fieldWithPath("analyzedTextInfoList[0].startOffset").description("텀 시작 위치"),
+                                fieldWithPath("analyzedTextInfoList[0].endOffset").description("텀 끝 위치")
                         )
 
 

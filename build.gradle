@@ -17,7 +17,7 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-    asciidoctorExt
+    asciidoctorExt // operation 을 위한 설정
 }
 
 repositories {
@@ -46,10 +46,14 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+
 asciidoctor {
-    dependsOn test
     inputs.dir snippetsDir
+    configurations 'asciidoctorExt'
+    dependsOn test
+//    println "asciidoctor.inputs.dir : ${inputs.dir}"
 }
+println "asciidoctor.outputDir : ${asciidoctor.outputDir}"
 
 asciidoctor.doFirst {
     delete file('src/main/resources/static/docs')
@@ -69,7 +73,7 @@ build {
 bootJar {
     dependsOn asciidoctor
     copy {
-        from "${asciidoctor.outputDir}"
+        from "${asciidoctor.outputDir}" //D:\Programming\workspace\JAVA\Local\PILOT_PROJECT\NORI_ONLINE\nori-online\build\docs\asciidoc
 //        into 'BOOT-INF/classes/static/docs'
         into 'build/resources/main/static/docs'
     }

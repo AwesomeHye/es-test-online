@@ -29,6 +29,8 @@ Return *analyzed text* by *input analyzer*. +
 [[analzer-nori]]
 === /analyzer/nori
 
+icon:comment[]
+icon:fire[]
 `GET` 요청을 사용하여 노리 형태소 분석 결과를 반환한다.
 
 //
