@@ -1,4 +1,4 @@
-package dev.hyein.norionline.response;
+package dev.elsboo.esonline.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

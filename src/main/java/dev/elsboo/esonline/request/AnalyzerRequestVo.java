@@ -1,4 +1,4 @@
-package dev.hyein.norionline.request;
+package dev.elsboo.esonline.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,5 +8,6 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 public class AnalyzerRequestVo {
+    private String indexName;
     private String inputText;
 }

@@ -1,10 +1,10 @@
-package dev.hyein.norionline;
+package dev.elsboo.esonline;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NoriOnlineApplicationTests {
+class EsOnlineApplicationTests {
 
     @Test
     void contextLoads() {
