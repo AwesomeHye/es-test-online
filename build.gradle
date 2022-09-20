@@ -9,9 +9,9 @@ group = 'dev.hyein'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-ext { // 전역변수 설정
-    snippetsDir = file('build/generated-snippets')
-}
+//ext { // 전역변수 설정
+//    snippetsDir = file('build/generated-snippets')
+//}
 
 configurations {
     compileOnly {
@@ -48,21 +48,22 @@ tasks.named('test') {
 
 
 asciidoctor {
-    inputs.dir snippetsDir
+//    inputs.dir snippetsDir
     configurations 'asciidoctorExt'
     dependsOn test
 //    println "asciidoctor.inputs.dir : ${inputs.dir}"
 }
 println "asciidoctor.outputDir : ${asciidoctor.outputDir}"
 
-asciidoctor.doFirst {
-    delete file('src/main/resources/static/docs')
-}
+//asciidoctor.doFirst {
+//    delete file('src/main/resources/static/docs')
+//}
 
 
 task copyDocument(type: Copy) {
     dependsOn asciidoctor
-    from(file("build/docs/asciidoc"))
+    from(file("${asciidoctor.outputDir}"))
+//    from(file("build/docs/asciidoc"))
     into(file("src/main/resources/static/docs"))
 }
 
