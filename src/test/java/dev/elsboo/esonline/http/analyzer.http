@@ -1,4 +1,0 @@
-GET http://localhost:8080/analyze/nori?decompoundMode=compound&userDictionaryRules=가곡역 가곡 역&discardPunctuation=true&noriPartOfSpeech=NN
-Accept: application/json
-
-###
