@@ -1,0 +1,46 @@
+= ElasticSearch Analyzer Test Online API Guide
+서혜인 <catsarah3333@gmail.com>
+:sectnums:
+:doctype: book
+:icons: font
+:source-highlighter: rouge
+:toc: left
+:toclevels: 5
+:sectlinks:
+:sectanchors:
+:operation-request-parameters-title: Request Parameter
+:operation-response-fields-title: Response Parameter
+:operation-http-request-title: Example Request
+:operation-http-response-title: Example Response
+
+
+
+[[api]]
+= API Reference
+예이
+
+[[analyzer]]
+== /analyzer
+
+Return *analyzed text* by *input analyzer*. +
+지정한 형태소 분석기에 따른 분석 결과를 반환한다.
+
+
+[[analzer-nori]]
+=== /analyzer/nori
+
+icon:comment[]
+icon:fire[]
+`GET` 요청을 사용하여 노리 형태소 분석 결과를 반환한다.
+
+//
+//ifndef::snippets[]
+//:snippets: ./build/generated-snippets
+//endif::[]
+//
+//include::{snippets}/analyze-nori/request-parameters.adoc[]
+//include::{snippets}/analyze-nori/response-fields.adoc[]
+//include::{snippets}/analyze-nori/http-request.adoc[]
+//include::{snippets}/analyze-nori/http-response.adoc[]
+
+operation::analyze-nori[snippets='http-request,http-response,request-parameters,response-fields']

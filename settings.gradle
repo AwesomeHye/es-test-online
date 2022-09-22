@@ -1,2 +1,3 @@
 rootProject.name = 'ES_ONLINE'
-
+include('es-online-controller')
+include('elasticsearch-core')
