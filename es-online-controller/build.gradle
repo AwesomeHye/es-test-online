@@ -1,0 +1,81 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'java'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+}
+
+group = 'dev.elsboo'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    asciidoctorExt // operation 을 위한 설정
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // spring
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation group: 'org.springframework.restdocs', name: 'spring-restdocs-mockmvc', version: '2.0.6.RELEASE'
+    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+
+    implementation project(':elasticsearch-core')
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+asciidoctor {
+//    inputs.dir snippetsDir
+    configurations 'asciidoctorExt'
+    dependsOn test
+//    println "asciidoctor.inputs.dir : ${inputs.dir}"
+}
+println "asciidoctor.outputDir : ${asciidoctor.outputDir}"
+
+//asciidoctor.doFirst {
+//    delete file('src/main/resources/static/docs')
+//}
+
+
+task copyDocument(type: Copy) {
+    dependsOn asciidoctor
+//    delete(file("src/main/resources/static/docs"))
+    from(file("${asciidoctor.outputDir}"))
+//    from(file("build/docs/asciidoc"))
+    into(file("src/main/resources/static/docs"))
+}
+
+build {
+    dependsOn copyDocument
+}
+
+bootJar {
+    dependsOn asciidoctor
+    copy {
+        from "${asciidoctor.outputDir}" //D:\Programming\workspace\JAVA\Local\PILOT_PROJECT\NORI_ONLINE\nori-online\build\docs\asciidoc
+//        into 'BOOT-INF/classes/static/docs'
+        into 'build/resources/main/static/docs'
+    }
+}
+
+
+
+
+
