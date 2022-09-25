@@ -3,6 +3,7 @@ package dev.elsboo.esonlinecontroller.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.elsboo.esonlinecontroller.common.RestDocsConfiguration;
 import dev.elsboo.esonlinecontroller.request.NoriAnalyzerRequestVo;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -55,9 +56,7 @@ class AnalyzerControllerTest {
         )
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("analyzedTextInfoList[0].analyzedText").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("analyzedTextInfoList[0].startOffset").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("analyzedTextInfoList[0].endOffset").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.analyzedTextInfoList", Matchers.hasSize(Matchers.not(0))))
 
                 .andDo(document("analyze-nori", // 문서명
                         requestHeaders(
