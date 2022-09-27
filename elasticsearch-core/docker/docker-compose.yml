@@ -20,7 +20,8 @@ services:
         hard: -1
     ports:
       - 9200:9200
-#      - 9301:9300
+    command:
+      - /bin/sh -c "./bin/elasticsearch-plugin install analysis-nori;"
   es2:
     container_name: es2
     depends_on:
@@ -41,9 +42,8 @@ services:
       memlock:
         soft: -1
         hard: -1
-#    ports:
-#      - 9202:9200
-#      - 9302:9300
+    command:
+      - /bin/sh -c "./bin/elasticsearch-plugin install analysis-nori;"
   kibana:
     container_name: kibana
     depends_on:
