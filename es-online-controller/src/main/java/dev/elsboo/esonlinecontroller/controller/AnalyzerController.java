@@ -6,6 +6,7 @@ import dev.elsboo.esonlinecontroller.response.AnalyzedTextInfo;
 import dev.elsboo.esonlinecontroller.response.AnalyzerResponseVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.index.analysis.Analysis;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,6 @@ public class AnalyzerController {
     @GetMapping("nori")
     public ResponseEntity<AnalyzerResponseVo> getNoriAnalyze(@ModelAttribute NoriAnalyzerRequestVo noriAnalyzerRequestVo) {
         AnalyzerResponseVo analyzerResponseVo = new AnalyzerResponseVo();
-
 
 //        analyzerResponseVo = noriAnalyzerService.getAnalyzeInfo(noriAnalyzerRequestVo);
 

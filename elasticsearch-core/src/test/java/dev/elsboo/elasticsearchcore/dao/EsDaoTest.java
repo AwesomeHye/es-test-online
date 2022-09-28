@@ -4,6 +4,7 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.ExistsRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.elsboo.elasticsearchcore.index.Analysis;
+import jakarta.json.JsonNumber;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonReader;
 import jakarta.json.JsonReaderFactory;
@@ -78,9 +79,10 @@ class EsDaoTest {
     }
 
     @Test
-    @DisplayName("json parser test")
+    @DisplayName("vo settings test")
     public void json() throws IOException {
-//        Analysis analysis = new Analysis();
-//        client._jsonpMapper().serialize(analysis, new JsonGeneratorFactory().);
+        Analysis analysis = new Analysis();
+        esDao.createIndex("test2", analysis);
+        Assertions.assertTrue(esDao.existIndex("test2"));
     }
 }
