@@ -1,12 +1,11 @@
-package dev.elsboo.esonlinecontroller.controller;
+package dev.elsboo.esonline.controller;
 
-import dev.elsboo.esonlinecontroller.Service.NoriAnalyzerService;
-import dev.elsboo.esonlinecontroller.request.NoriAnalyzerRequestVo;
-import dev.elsboo.esonlinecontroller.response.AnalyzedTextInfo;
-import dev.elsboo.esonlinecontroller.response.AnalyzerResponseVo;
+import dev.elsboo.esonline.Service.NoriAnalyzerService;
+import dev.elsboo.esonline.request.NoriAnalyzerRequestVo;
+import dev.elsboo.esonline.response.AnalyzedTextInfo;
+import dev.elsboo.esonline.response.AnalyzerResponseVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.index.analysis.Analysis;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

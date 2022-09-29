@@ -1,4 +1,4 @@
-package dev.elsboo.esonlinecontroller;
+package dev.elsboo.esonline;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

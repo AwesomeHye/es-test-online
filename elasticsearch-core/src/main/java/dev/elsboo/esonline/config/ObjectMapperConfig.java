@@ -1,4 +1,4 @@
-package dev.elsboo.elasticsearchcore.config;
+package dev.elsboo.esonline.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

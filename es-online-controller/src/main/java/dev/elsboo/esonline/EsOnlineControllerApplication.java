@@ -1,13 +1,13 @@
-package dev.elsboo.elasticsearchcore;
+package dev.elsboo.esonline;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ElasticsearchCoreApplication {
+public class EsOnlineControllerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ElasticsearchCoreApplication.class, args);
+        SpringApplication.run(EsOnlineControllerApplication.class, args);
     }
 
 }

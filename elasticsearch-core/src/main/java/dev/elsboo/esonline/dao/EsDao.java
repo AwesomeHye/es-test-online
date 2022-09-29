@@ -1,4 +1,4 @@
-package dev.elsboo.elasticsearchcore.dao;
+package dev.elsboo.esonline.dao;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;

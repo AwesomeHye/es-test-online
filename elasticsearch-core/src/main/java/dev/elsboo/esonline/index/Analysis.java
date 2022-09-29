@@ -1,7 +1,6 @@
-package dev.elsboo.elasticsearchcore.index;
+package dev.elsboo.esonline.index;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

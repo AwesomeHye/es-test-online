@@ -1,8 +1,8 @@
-package dev.elsboo.esonlinecontroller.controller;
+package dev.elsboo.esonline.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.elsboo.esonlinecontroller.common.RestDocsConfiguration;
-import dev.elsboo.esonlinecontroller.request.NoriAnalyzerRequestVo;
+import dev.elsboo.esonline.common.RestDocsConfiguration;
+import dev.elsboo.esonline.request.NoriAnalyzerRequestVo;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

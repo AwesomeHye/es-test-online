@@ -1,4 +1,4 @@
-package dev.elsboo.elasticsearchcore.config;
+package dev.elsboo.esonline.config;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
