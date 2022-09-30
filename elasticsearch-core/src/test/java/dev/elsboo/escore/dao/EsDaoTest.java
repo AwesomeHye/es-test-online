@@ -1,7 +1,8 @@
-package dev.elsboo.esonline.dao;
+package dev.elsboo.escore.dao;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import dev.elsboo.esonline.index.Analysis;
+import dev.elsboo.escore.config.ElasticConfig;
+import dev.elsboo.escore.index.Analysis;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
@@ -12,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
-@SpringBootTest
+@SpringBootTest(classes = ElasticConfig.class)
 @Slf4j
 class EsDaoTest {
     @Autowired
@@ -31,10 +32,11 @@ class EsDaoTest {
 
     @Test
     @DisplayName("인덱스 settings string 생성")
-    @Disabled
     public void createSettingsIndex() throws IOException {
-        esDao.createIndex("test1", setting());
-        Assertions.assertTrue(esDao.existIndex("test1"));
+        String indexName = "test1";
+        esDao.deleteIndex(indexName);
+        esDao.createIndex(indexName, setting());
+        Assertions.assertTrue(esDao.existIndex(indexName));
     }
 
     public String setting() {

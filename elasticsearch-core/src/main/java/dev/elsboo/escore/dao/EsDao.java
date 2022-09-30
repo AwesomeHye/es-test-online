@@ -1,8 +1,10 @@
-package dev.elsboo.esonline.dao;
+package dev.elsboo.escore.dao;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
+import co.elastic.clients.elasticsearch.indices.DeleteIndexRequest;
+import co.elastic.clients.elasticsearch.indices.DeleteIndexResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,10 @@ public class EsDao {
 
     public boolean existIndex(String indexName) throws IOException {
         return client.indices().exists(builder -> builder.index(indexName)).value();
+    }
+
+    public DeleteIndexResponse deleteIndex(String indexName) throws IOException {
+        return client.indices().delete(new DeleteIndexRequest.Builder().index(indexName).build());
     }
 
     public CreateIndexResponse createIndex(String indexName, String settings) throws IOException {

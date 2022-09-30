@@ -35,6 +35,8 @@ dependencies {
     asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 
     implementation project(':elasticsearch-core')
+//    implementation 'jakarta.json:jakarta.json-api:2.0.1'
+
 }
 
 tasks.named('test') {

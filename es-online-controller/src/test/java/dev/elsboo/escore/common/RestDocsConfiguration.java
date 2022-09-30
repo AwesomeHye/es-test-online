@@ -1,4 +1,4 @@
-package dev.elsboo.esonline.common;
+package dev.elsboo.escore.common;
 
 import org.springframework.boot.test.autoconfigure.restdocs.RestDocsMockMvcConfigurationCustomizer;
 import org.springframework.boot.test.context.TestConfiguration;

@@ -1,9 +1,9 @@
-package dev.elsboo.esonline.controller;
+package dev.elsboo.escore.controller;
 
-import dev.elsboo.esonline.Service.NoriAnalyzerService;
-import dev.elsboo.esonline.request.NoriAnalyzerRequestVo;
-import dev.elsboo.esonline.response.AnalyzedTextInfo;
-import dev.elsboo.esonline.response.AnalyzerResponseVo;
+import dev.elsboo.escore.Service.NoriAnalyzerService;
+import dev.elsboo.escore.request.NoriAnalyzerRequestVo;
+import dev.elsboo.escore.response.AnalyzedTextInfo;
+import dev.elsboo.escore.response.AnalyzerResponseVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

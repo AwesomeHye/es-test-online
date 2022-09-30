@@ -1,4 +1,4 @@
-package dev.elsboo.esonline.request;
+package dev.elsboo.escore.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

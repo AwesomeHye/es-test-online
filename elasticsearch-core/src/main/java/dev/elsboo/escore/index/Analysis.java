@@ -1,4 +1,4 @@
-package dev.elsboo.esonline.index;
+package dev.elsboo.escore.index;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AllArgsConstructor;

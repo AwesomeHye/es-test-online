@@ -1,10 +1,10 @@
-package dev.elsboo.esonline.Service;
+package dev.elsboo.escore.Service;
 
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
-import dev.elsboo.esonline.dao.EsDao;
-import dev.elsboo.esonline.index.Analysis;
-import dev.elsboo.esonline.request.NoriAnalyzerRequestVo;
-import dev.elsboo.esonline.response.AnalyzerResponseVo;
+import dev.elsboo.escore.dao.EsDao;
+import dev.elsboo.escore.index.Analysis;
+import dev.elsboo.escore.request.NoriAnalyzerRequestVo;
+import dev.elsboo.escore.response.AnalyzerResponseVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

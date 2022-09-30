@@ -1,18 +1,23 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
 }
 
-group 'dev.elsboo'
+allprojects {
+    apply plugin: 'java'
+    group 'dev.elsboo'
 
-repositories {
-    mavenCentral()
+    test {
+        useJUnitPlatform()
+    }
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-}
-
-test {
-    useJUnitPlatform()
+subprojects {
+    println 'I AM ROOT'
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+        implementation ('jakarta.json:jakarta.json-api:2.0.1')
+    }
 }

@@ -1,11 +1,12 @@
-package dev.elsboo.esonline.controller;
+package dev.elsboo.escore.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.elsboo.esonline.common.RestDocsConfiguration;
-import dev.elsboo.esonline.request.NoriAnalyzerRequestVo;
+import dev.elsboo.escore.common.RestDocsConfiguration;
+import dev.elsboo.escore.request.NoriAnalyzerRequestVo;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,6 +40,7 @@ class AnalyzerControllerTest {
     MockMvc mockMvc;
 
     @Autowired
+    @Qualifier("not_root_wrap")
     ObjectMapper objectMapper;
 
     @Test

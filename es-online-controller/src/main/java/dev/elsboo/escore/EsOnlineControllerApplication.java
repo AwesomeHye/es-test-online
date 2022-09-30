@@ -1,4 +1,4 @@
-package dev.elsboo.esonline;
+package dev.elsboo.escore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
