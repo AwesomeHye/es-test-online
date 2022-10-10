@@ -1,13 +1,10 @@
 package dev.elsboo.escore.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor @Builder
 public class AnalyzedTextInfo {
-    private String analyzedText;
-    private int startOffset;
-    private int endOffset;
+    private String token;
+    private Long startOffset;
+    private Long endOffset;
 }

@@ -50,7 +50,7 @@ class AnalyzerControllerTest {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/analyze/nori")
                         .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
-                        .param("decompoundMode", "compound")
+                        .param("decompoundMode", "mixed")
                         .param("userDictionaryRules", "가곡역 가곡 역")
                         .param("discardPunctuation", "true")
                         .param("noriPartOfSpeech", "NN")
@@ -78,7 +78,7 @@ class AnalyzerControllerTest {
                         ),
 
                         responseFields(
-                                fieldWithPath("analyzedTextInfoList[0].analyzedText").description("분석 완료된 텍스트"),
+                                fieldWithPath("analyzedTextInfoList[0].token").description("분석 완료된 텍스트"),
                                 fieldWithPath("analyzedTextInfoList[0].startOffset").description("텀 시작 위치"),
                                 fieldWithPath("analyzedTextInfoList[0].endOffset").description("텀 끝 위치")
                         )
@@ -87,7 +87,7 @@ class AnalyzerControllerTest {
     }
 
     private NoriAnalyzerRequestVo createVo() {
-        return new NoriAnalyzerRequestVo("compound", Arrays.asList("가곡역 가곡 역"), true, Arrays.asList("NN"));
+        return new NoriAnalyzerRequestVo("nori_az", "compound", Arrays.asList("가곡역 가곡 역"), true, Arrays.asList("NN"));
     }
 
 }

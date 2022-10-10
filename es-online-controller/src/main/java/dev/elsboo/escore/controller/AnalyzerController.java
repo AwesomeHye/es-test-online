@@ -22,12 +22,11 @@ public class AnalyzerController {
     private final NoriAnalyzerService noriAnalyzerService;
 
     @GetMapping("nori")
-    public ResponseEntity<AnalyzerResponseVo> getNoriAnalyze(@ModelAttribute NoriAnalyzerRequestVo noriAnalyzerRequestVo) {
+    public ResponseEntity<AnalyzerResponseVo> getNoriAnalyze(@ModelAttribute NoriAnalyzerRequestVo noriAnalyzerRequestVo) throws Exception {
         AnalyzerResponseVo analyzerResponseVo = new AnalyzerResponseVo();
 
-//        analyzerResponseVo = noriAnalyzerService.getAnalyzeInfo(noriAnalyzerRequestVo);
+        analyzerResponseVo = noriAnalyzerService.getAnalyzeInfo(noriAnalyzerRequestVo);
 
-        analyzerResponseVo.setAnalyzedTextInfoList(List.of(new AnalyzedTextInfo(noriAnalyzerRequestVo.getInputText(), 0, 3)));
         return ResponseEntity.ok(analyzerResponseVo);
     }
 }

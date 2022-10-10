@@ -1,4 +1,4 @@
-package dev.elsboo.escore;
+package dev.elsboo.escore.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;

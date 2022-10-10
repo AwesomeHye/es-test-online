@@ -1,9 +1,12 @@
 package dev.elsboo.escore.Service;
 
+import co.elastic.clients.elasticsearch.indices.AnalyzeResponse;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
+import co.elastic.clients.elasticsearch.indices.analyze.AnalyzeToken;
 import dev.elsboo.escore.dao.EsDao;
 import dev.elsboo.escore.index.Analysis;
 import dev.elsboo.escore.request.NoriAnalyzerRequestVo;
+import dev.elsboo.escore.response.AnalyzedTextInfo;
 import dev.elsboo.escore.response.AnalyzerResponseVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +15,7 @@ import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -35,7 +39,6 @@ public class NoriAnalyzerService {
 
     private CreateIndexResponse createIndex(NoriAnalyzerRequestVo noriAnalyzerRequestVo) throws IOException {
         Analysis analysis = convert2Analysis(noriAnalyzerRequestVo);
-        log.info(analysis.toString());
         return esDao.createIndex(noriAnalyzerRequestVo.getIndexName(), analysis);
     }
 
@@ -77,12 +80,26 @@ public class NoriAnalyzerService {
         az.put("type", "custom");
         az.put("tokenizer", "nori_tk");
 
-        analyzer.put("nori_az", az);
+        analyzer.put(noriAnalyzerRequestVo.getAnalyzerName(), az);
         return analyzer;
     }
 
-    private AnalyzerResponseVo analyze(NoriAnalyzerRequestVo noriAnalyzerRequestVo) {
-        return null;
+    private AnalyzerResponseVo analyze(NoriAnalyzerRequestVo noriAnalyzerRequestVo) throws IOException {
+        AnalyzerResponseVo analyzerResponseVo = new AnalyzerResponseVo();
+        List<AnalyzedTextInfo> analyzedTextInfoList = analyzerResponseVo.getAnalyzedTextInfoList();
+
+        String indexName = noriAnalyzerRequestVo.getIndexName();
+        String analyzerName = noriAnalyzerRequestVo.getAnalyzerName();
+        String inputText = noriAnalyzerRequestVo.getInputText();
+
+        AnalyzeResponse analyzeResponse = esDao.analyze(indexName, analyzerName, inputText);
+        List<AnalyzeToken> tokens = analyzeResponse.tokens();
+
+        for (AnalyzeToken analyzeToken : tokens) {
+            analyzedTextInfoList.add(AnalyzedTextInfo.builder().token(analyzeToken.token()).startOffset(analyzeToken.startOffset()).endOffset(analyzeToken.endOffset()).build());
+        }
+
+        return analyzerResponseVo;
     }
 
 }

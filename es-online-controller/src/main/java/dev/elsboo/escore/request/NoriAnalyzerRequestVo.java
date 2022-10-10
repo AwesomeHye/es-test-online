@@ -10,6 +10,7 @@ import java.util.List;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class NoriAnalyzerRequestVo extends AnalyzerRequestVo {
+    private String analyzerName = "nori_az";
     private String decompoundMode = "";
     private List<String> userDictionaryRules = new ArrayList<>();
     private boolean discardPunctuation = true;
