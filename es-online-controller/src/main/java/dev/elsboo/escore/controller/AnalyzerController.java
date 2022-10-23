@@ -8,9 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +16,14 @@ import java.util.List;
 @RequestMapping("analyze")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin
 public class AnalyzerController {
     private final NoriAnalyzerService noriAnalyzerService;
+
+    @GetMapping("test")
+    public ResponseEntity<String> test(String str) {
+        return ResponseEntity.ok("test: " + str);
+    }
 
     @GetMapping("nori")
     public ResponseEntity<AnalyzerResponseVo> getNoriAnalyze(@ModelAttribute NoriAnalyzerRequestVo noriAnalyzerRequestVo) throws Exception {

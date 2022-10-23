@@ -42,6 +42,8 @@ services:
       memlock:
         soft: -1
         hard: -1
+    ports:
+      - 9201:9200
 #    command:
 #      - /bin/sh -c "./bin/elasticsearch-plugin install analysis-nori;"
   kibana:
